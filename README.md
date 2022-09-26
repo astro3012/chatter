@@ -23,9 +23,7 @@
   <p align="center">
 	A chat app created using React, Typescript with a Rust backend server.
     <br />
-    <a href="https://github.com/astro3012/chatter/issues">Backend server</a>
-    ·
-    <a href="https://github.com/astro3012/chatter/issues">Request Feature</a>
+    <a href="https://github.com/mnaphade18/chat-server">Backend server</a>
   </p>
 </div>
 
@@ -46,7 +44,6 @@
       </ul>
     </li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -72,37 +69,44 @@ Chat app built with React and TypeScript, with a Rust backend server.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-
-- Node.js: https://nodejs.org/en/download/
-- npm
-  ```sh
-  npm install npm@latest -g
-  ```
-- yarn
-  ```sh
-  npm install --global yarn
-  ```
+-   Node.js: https://nodejs.org/en/download/
+-   npm
+    ```sh
+    npm install npm@latest -g
+    ```
+-   yarn
+    ```sh
+    npm install --global yarn
+    ```
 
 ### Installation
 
 1. Clone the repo
-   ```sh
-   git clone https://github.com/astro3012/chatter.git
-   ```
+    ```sh
+    git clone https://github.com/astro3012/chatter.git
+    ```
 2. Install packages
-   ```sh
-   npm install
-   ```
-   ```sh
-   yarn install
-   ```
+    ```sh
+    npm install
+    ```
+    ```sh
+    yarn install
+    ```
+3. Run the client
+    ```sh
+    npm run start
+    ```
+    ```sh
+    yarn start
+    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Contact
 
-Project Link: [https://github.com/astro3012/chatter](https://github.com/astro3012/chatter)
+Project Link: [Chatter](https://github.com/astro3012/chatter)
+<br />
+Linkedin: [Tanmay Lanjewar](https://www.linkedin.com/in/tanmaylanjewar)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

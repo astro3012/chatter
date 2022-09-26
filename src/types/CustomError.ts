@@ -1,4 +1,4 @@
-export type CustomErrorType = {
-  message?: string
-  code?: string
+export interface CustomErrorType {
+    message?: string
+    code?: string
 }

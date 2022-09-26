@@ -1,55 +1,69 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
+import _ from 'lodash'
 import { Box } from '@mui/material'
 import NotificationsPausedTwoToneIcon from '@mui/icons-material/NotificationsPausedTwoTone'
 import ChatInput from './components/ChatInput'
 import ChatBubbles from './components/ChatBubbles'
 import ReceiverProfileHeader from './components/ReceiverProfileHeader'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../store'
+import { Message } from '../../types/Message'
+import { camelCaseConverter } from '../../logic'
 
 const ChatWindow: React.FC<any> = () => {
-  const [messages, setMessages] = useState<unknown[]>()
+    const [messages, setMessages] = useState<Message[]>([])
+    const wsClient = useRef(null)
+    const chatId = useSelector((state: RootState) => state.chat.chatId)
+    const user = useSelector((state: RootState) => state.user.loggedInUser)
 
-  const getMessages = useCallback(async () => {
-    fetch(
-      'https://chat-sever-rust.herokuapp.com/chats/messages/c6271f7a-264e-4049-a762-4f2b6ca8039e',
-      {
-        headers: {
-          'x-user-id': 'a3e1263a-999e-4f45-a145-a184636def21'
+    useEffect(() => {
+        fetch(`https://chat-sever-rust.herokuapp.com/chats/messages/${chatId}`, {
+            headers: {
+                'x-user-id': user.id
+            }
+        })
+            .then(async (response) => await response.json())
+            .then((response) => response.map((mesage) => camelCaseConverter(mesage) as Message))
+            .then((messagesList) => setMessages(messagesList))
+            .catch((error) => console.log(error))
+    }, [chatId, user])
+
+    useEffect(() => {
+        const socket = new WebSocket(
+            `wss://chat-sever-rust.herokuapp.com/chats/messages/${chatId}/${user.id}/ws`
+        )
+        socket.onmessage = (message) => {
+            const convertedMessage = camelCaseConverter(JSON.parse(message.data)) as Message
+            setMessages((prev) => [...prev, convertedMessage])
         }
-      }
-    )
-      .then((response) => response.json())
-      .then((messagesList) => setMessages(messagesList))
-      .catch((error) => console.log(error))
-  }, [])
+        socket.onopen = () => {
+            console.log('ws opened')
+            // setWebSocket(wsClient)
+        }
+        socket.onclose = () => console.log('ws closed')
 
-  useEffect(() => {
-    getMessages()
-  }, [])
+        wsClient.current = socket
 
-  console.log(messages)
-  return (
-    <Box
-      width="100%"
-      height="100%"
-      borderRadius="0 8px 8px 0"
-      sx={{
-        backgroundColor: 'customBg.main'
-      }}
-      display="flex"
-      flexDirection="column">
-      {/* {
-        <Box height="100%" display="flex" flexDirection="column" justifyContent="center">
-          <NotificationsPausedTwoToneIcon
-            sx={{ width: '100%', fontSize: '100px' }}
-            color="primary"
-          />
+        return () => {
+            socket.close()
+        }
+    }, [chatId, user])
+
+    return (
+        <Box
+            width="100%"
+            height="100%"
+            borderRadius="0 8px 8px 0"
+            sx={{
+                backgroundColor: 'customBg.main'
+            }}
+            display="flex"
+            flexDirection="column">
+            <ReceiverProfileHeader />
+            <ChatBubbles messages={messages} />
+            <ChatInput />
         </Box>
-      } */}
-      <ReceiverProfileHeader />
-      <ChatBubbles />
-      <ChatInput />
-    </Box>
-  )
+    )
 }
 
 export default ChatWindow

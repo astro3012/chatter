@@ -1,58 +1,66 @@
 {
-  "name": "create-react-app-with-typescript",
-  "version": "5.0.0",
-  "private": true,
-  "dependencies": {
-    "@babel/preset-typescript": "^7.18.6",
-    "@emotion/react": "latest",
-    "@emotion/styled": "latest",
-    "@mui/icons-material": "^5.10.2",
-    "@mui/material": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "eslint": "^8.0.1",
-    "html-webpack-plugin": "^5.5.0",
-    "react": "latest",
-    "react-dom": "latest",
-    "react-scripts": "latest",
-    "source-map-loader": "^4.0.0",
-    "typescript": "*",
-    "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.10.0"
-  },
-  "scripts": {
-    "start": "webpack-dev-server --open",
-    "build": "webpack",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix",
-    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@faker-js/faker": "^7.4.0",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-config-standard-with-typescript": "^22.0.0",
-    "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-n": "^15.0.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-promise": "^6.0.0",
-    "eslint-plugin-react": "^7.30.1",
-    "prettier": "^2.7.1",
-    "ts-loader": "^9.3.1"
-  }
+    "name": "create-react-app-with-typescript",
+    "version": "5.0.0",
+    "private": true,
+    "dependencies": {
+        "@babel/preset-typescript": "^7.18.6",
+        "@emotion/react": "latest",
+        "@emotion/styled": "latest",
+        "@mui/icons-material": "^5.10.2",
+        "@mui/material": "latest",
+        "@reduxjs/toolkit": "^1.8.5",
+        "@types/lodash": "^4.14.185",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "@types/react-kawaii": "^0.17.0",
+        "html-webpack-plugin": "^5.5.0",
+        "lodash": "^4.17.21",
+        "react": "latest",
+        "react-dom": "latest",
+        "react-kawaii": "^0.18.0",
+        "react-redux": "^8.0.4",
+        "react-scripts": "latest",
+        "source-map-loader": "^4.0.0",
+        "typescript": "*",
+        "webpack": "^5.74.0",
+        "webpack-cli": "^4.10.0",
+        "webpack-dev-server": "^4.10.0"
+    },
+    "scripts": {
+        "prebuild": "react-undraw-cli",
+        "build": "webpack",
+        "start": "webpack-dev-server --open",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "lint:fix": "eslint --fix",
+        "lint": "prettier -c . && eslint --ext .js,.jsx,.ts,.tsx . && tsc --noEmit",
+        "lint-fix": "prettier --write . && eslint --fix --ext .js,.jsx,.ts,.tsx .",
+        "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@faker-js/faker": "^7.4.0",
+        "@typescript-eslint/eslint-plugin": "^5.0.0",
+        "eslint": "^8.0.1",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-config-standard-with-typescript": "^22.0.0",
+        "eslint-plugin-import": "^2.25.2",
+        "eslint-plugin-n": "^15.0.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-promise": "^6.0.0",
+        "eslint-plugin-react": "^7.30.1",
+        "prettier": "^2.7.1",
+        "ts-loader": "^9.3.1"
+    }
 }
