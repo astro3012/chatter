@@ -47,8 +47,6 @@
   </ol>
 </details>
 
-<!-- ABOUT THE PROJECT -->
-
 ## About
 
 Chat app built with React and TypeScript, with a Rust backend server.
